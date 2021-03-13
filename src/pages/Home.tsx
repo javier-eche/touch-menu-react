@@ -1,8 +1,8 @@
-const Header = () => {
+const Home = () => {
   return (
     <>
     </>
   );
 }
 
-export default Header;
+export default Home;

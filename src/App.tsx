@@ -1,8 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Global, css } from "@emotion/react";
 import Login from './pages/Login';
+import Axios from 'axios';
 
 function App() {
+
+  useEffect(() => {
+    const fetchData = async() => {
+      const { data } = await Axios({
+        method: 'post',
+        url: "http://localhost:8000/api_generate_token/",
+        headers: {},
+        data:{
+          username: 'admin',
+          password: '1234',
+        }
+      });
+      sessionStorage.setItem('token', data.token);
+    };
+    fetchData();
+  }, []);
+
   return (
     <>
       <Global
