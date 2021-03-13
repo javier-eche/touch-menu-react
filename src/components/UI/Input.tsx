@@ -12,8 +12,8 @@ const StyledInput = styled.input<Props>`
   background: white;
   box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
-  font-weight: bold;
-  font-size: 40px;
+  font-weight: normal;
+  font-size: 35px;
   text-align: center;
   border: 1px solid transparent;
   transition: border 200ms;
