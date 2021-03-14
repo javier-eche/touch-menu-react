@@ -2,8 +2,6 @@
 import styled from "@emotion/styled";
 import Icon from "../UI/Icon";
 import Logo from "../UI/Logo";
-import { useContext } from 'react';
-import { UserContext } from './../../assets/contexts/contexts';
 
 const ContainerHeader = styled.div`
   display: flex;
@@ -13,8 +11,6 @@ const ContainerHeader = styled.div`
 `;
 
 const Header = () => {
-  const { products } = useContext(UserContext);
-  console.log(products)
   return (
     <ContainerHeader>
       <Icon type="menu" fill="#D9310C" size={50} />
