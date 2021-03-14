@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
+import { useHistory } from "react-router-dom";
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
 import Logo from "../components/UI/Logo";
@@ -13,12 +14,18 @@ const ContainerLogin = styled.form`
   gap: 20px
 `;
 
+let history;
+
 const handleSubmit = (e:React.FormEvent) => {
   e.preventDefault();
+  history.push("/home");
   console.log("oli")
 }
 
 const Login = () => {
+  
+  history = useHistory();
+
   return (
     <ContainerLogin onSubmit={handleSubmit}>
       <Logo size={"default"}/>

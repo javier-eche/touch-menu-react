@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { Global, css } from "@emotion/react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from './pages/Login';
 import Axios from 'axios';
+import Home from './pages/Home';
 
 function App() {
 
@@ -39,7 +41,12 @@ function App() {
         }
         `}
       />
-      <Login />
+      <Router>
+        <Switch>
+          <Route path="/home" component={Home} />
+          <Route path="/" component={Login} />
+        </Switch>
+      </Router>
     </>
   );
 }
