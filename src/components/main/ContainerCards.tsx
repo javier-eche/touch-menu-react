@@ -1,8 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import Card from "../UI/Card";
-import { useContext } from 'react';
-import { UserContext } from './../../assets/contexts/contexts';
 
 const GridCards = styled.div`
   width: 100%;
@@ -14,13 +12,15 @@ const GridCards = styled.div`
   justify-content: center;
 `;
 
-const ContainerCards: React.FC = () => {
-  const { products } = useContext(UserContext);
+interface Props{
+  allProducts: any;
+}
+
+const ContainerCards: React.FC<Props> = ({ allProducts }) => {
   return (
     <GridCards>
-      {products.map( (product:any) => {
-        console.log(product)
-        return <Card key={product.id} src={product.image} title={product.name} />
+      {allProducts.map( (product:any) => {
+        return <Card key={product.id} product={product} />
       })}
     </GridCards>
   );

@@ -1,27 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { Global, css } from "@emotion/react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { UserContext } from './assets/contexts/contexts';
 import Login from './pages/Login';
-import Axios from 'axios';
 import Home from './pages/Home';
+import MainMenu from './pages/MainMenu';
 
 function App() {
 
-  useEffect(() => {
-    const fetchData = async() => {
-      const { data } = await Axios({
-        method: 'post',
-        url: "http://localhost:8000/api_generate_token/",
-        headers: {},
-        data:{
-          username: 'admin',
-          password: '1234',
-        }
-      });
-      sessionStorage.setItem('token', data.token);
-    };
-    fetchData();
-  }, []);
+  const [statusResume, setStatusResume] = useState(false);
+  const [currentOrder, setCurrentOrder] = useState([]);
+
+  const changueStatusResume = () => {
+    setStatusResume(!statusResume)
+  }
 
   return (
     <>
@@ -43,8 +35,11 @@ function App() {
       />
       <Router>
         <Switch>
-          <Route path="/home" component={Home} />
-          <Route path="/" component={Login} />
+        <UserContext.Provider value={{ statusResume, changueStatusResume, currentOrder, setCurrentOrder }} >
+            <Route exact path="/home" component={Home} />
+            <Route exact path="/mainmenu" component={MainMenu} />
+            <Route exact path="/" component={Login} />
+          </UserContext.Provider>
         </Switch>
       </Router>
     </>

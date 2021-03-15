@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
+import Axios from 'axios';
 import { useHistory } from "react-router-dom";
 import Button from "../components/UI/Button";
 import Input from "../components/UI/Input";
@@ -18,8 +19,20 @@ let history;
 
 const handleSubmit = (e:React.FormEvent) => {
   e.preventDefault();
-  history.push("/home");
-  console.log("oli")
+  const fetchData = async() => {
+    const { data } = await Axios({
+      method: 'post',
+      url: "https://touchmenuscreen.herokuapp.com/api_generate_token/",
+      headers: {},
+      data:{
+        username: 'admin',
+        password: '1234',
+      }
+    });
+    sessionStorage.setItem('token', data.token);
+    history.push("/mainmenu");
+  };
+  fetchData();
 }
 
 const Login = () => {
@@ -31,7 +44,7 @@ const Login = () => {
       <Logo size={"default"}/>
       <Input type={"text"}/>
       <Input type={"password"}/>
-      <Button type={"submit"}>Iniciar Sesión</Button>
+      <Button size={"large"} onClick={undefined}>Iniciar Sesión</Button>
     </ContainerLogin>
   );
 }

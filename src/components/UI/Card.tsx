@@ -1,5 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
+import { useState } from "react";
+import Icon from "./Icon";
+import { useContext } from 'react';
+import { UserContext } from './../../assets/contexts/contexts';
 
 const StyledCard = styled.div<PropStyle>`
   width: 360px;
@@ -17,23 +21,38 @@ const StyledCard = styled.div<PropStyle>`
     align-items: center;
     background-size: cover;
   }
+  & .card-checked{
+    display: ${(props) => !props.status ? "none" : "flex"};
+  }
 `;
 
 interface Props{
-  src: string;
-  title:string;
+  product: any;
 }
 
 interface PropStyle{
   src: string;
+  status: any;
 }
 
-const Card: React.FC<Props> = ({src, title}) => {
+const Card: React.FC<Props> = ({product}) => {
+
+  const { currentOrder, setCurrentOrder } = useContext(UserContext);
+  const [statusChecked, setStatusChecked] = useState(false);
+
+
+  const changeChecked = () => {
+    setStatusChecked(!statusChecked);
+    setCurrentOrder([...currentOrder, product])
+  }
 
   return (
-    <StyledCard src={src}>
-      <div className="card-image"></div>
-      <p>{title}</p>
+    <StyledCard src={product.image} status={statusChecked}>
+      <div onClick={changeChecked} className="card-image"></div>
+      <p>{product.name}</p>
+      <div className="card-checked">
+        <Icon onClick={() => console.log("")} type="checked" fill="#D9310C" size={20} />
+      </div>
     </StyledCard>
   );
 }
