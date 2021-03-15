@@ -1,6 +1,6 @@
 const colors = {
-    gray1: "#333333",
-    gray2: "#4F4F4F",
+    primary: "#FCCC10",
+    secondary: "#D9310C",
     gray3: "#828282",
     gray4: "#BDBDBD",
     gray5: "#E0E0E0",

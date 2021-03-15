@@ -10,6 +10,7 @@ function App() {
 
   const [statusResume, setStatusResume] = useState(false);
   const [currentOrder, setCurrentOrder] = useState([]);
+  const [currentClient, setCurrentClient] = useState("");
 
   const changueStatusResume = () => {
     setStatusResume(!statusResume)
@@ -19,7 +20,7 @@ function App() {
     <>
       <Global
         styles={css`
-        @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
 
         *{
           font-family: Source Code Pro;
@@ -35,7 +36,7 @@ function App() {
       />
       <Router>
         <Switch>
-        <UserContext.Provider value={{ statusResume, changueStatusResume, currentOrder, setCurrentOrder }} >
+        <UserContext.Provider value={{ statusResume, changueStatusResume, currentOrder, setCurrentOrder, currentClient, setCurrentClient }} >
             <Route exact path="/home" component={Home} />
             <Route exact path="/mainmenu" component={MainMenu} />
             <Route exact path="/" component={Login} />

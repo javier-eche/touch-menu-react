@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Header from "../components/main/Header";
 import Axios from 'axios';
 import ContainerCards from '../components/main/ContainerCards';
+import Resume from '../components/main/Resume';
 
 const Home = () => {
 
@@ -40,6 +41,7 @@ const Home = () => {
     <>
       <Header />
       <ContainerCards allProducts={products}/>
+      <Resume />
     </>
   );
 }

@@ -4,12 +4,13 @@ import { useState } from "react";
 import Icon from "./Icon";
 import { useContext } from 'react';
 import { UserContext } from './../../assets/contexts/contexts';
+import { colors } from './../../assets/Ui';
 
 const StyledCard = styled.div<PropStyle>`
   width: 360px;
   height: 100%;
   border-radius: 15px;
-  border: 1px solid #000;
+  border: 1px solid ${colors.secondary};
   display: flex;
   & .card-image{
     width: 150px;
@@ -19,10 +20,18 @@ const StyledCard = styled.div<PropStyle>`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-size: cover;
+    background-size: 150px 140px;
+  }
+  & .card-info{
+    width: 210px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
   }
   & .card-checked{
     display: ${(props) => !props.status ? "none" : "flex"};
+    justify-content: flex-end;
   }
 `;
 
@@ -41,7 +50,7 @@ const Card: React.FC<Props> = ({product}) => {
   const [statusChecked, setStatusChecked] = useState(false);
 
 
-  const changeChecked = () => {
+  function changeChecked(){
     setStatusChecked(!statusChecked);
     setCurrentOrder([...currentOrder, product])
   }
@@ -49,10 +58,15 @@ const Card: React.FC<Props> = ({product}) => {
   return (
     <StyledCard src={product.image} status={statusChecked}>
       <div onClick={changeChecked} className="card-image"></div>
-      <p>{product.name}</p>
-      <div className="card-checked">
-        <Icon onClick={() => console.log("")} type="checked" fill="#D9310C" size={20} />
+      <div className="card-info">
+        <p>{product.name}</p>
+        <p>{product.type_product}</p>
+        <p>S./ {product.price}</p>
+        <div className="card-checked">
+          <Icon onClick={() => console.log("")} type="checked" fill={colors.secondary} size={20} />
+        </div>      
       </div>
+
     </StyledCard>
   );
 }

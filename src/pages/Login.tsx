@@ -26,7 +26,7 @@ const handleSubmit = (e:React.FormEvent) => {
       headers: {},
       data:{
         username: 'admin',
-        password: '1234',
+        password: 'admin2021@',
       }
     });
     sessionStorage.setItem('token', data.token);
