@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { colors } from './../../assets/Ui';
 
 interface Props{
     type: string;
@@ -10,16 +11,15 @@ const StyledInput = styled.input<Props>`
   height: 70px;
   padding: 4px 8px;
   background: white;
-  box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.25);
-  border-radius: 15px;
+  border-radius: 8px;
+  border: 1px solid ${colors.secondary};
   font-weight: normal;
   font-size: 35px;
   text-align: center;
-  border: 1px solid transparent;
   transition: border 200ms;
   &:focus{
     outline:none;
-    border: 1px solid #2d9cdb;
+    border: 1px solid ${colors.secondary};
   }
 `;
 

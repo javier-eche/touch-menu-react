@@ -5,6 +5,7 @@ import { UserContext } from './assets/contexts/contexts';
 import Login from './pages/Login';
 import Home from './pages/Home';
 import MainMenu from './pages/MainMenu';
+import Resume from './pages/Resume';
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
   const [currentClient, setCurrentClient] = useState("");
 
   const changueStatusResume = () => {
-    setStatusResume(!statusResume)
+    currentOrder !== [] ? setStatusResume(true) : setStatusResume(false);
   }
 
   return (
@@ -37,6 +38,7 @@ function App() {
       <Router>
         <Switch>
         <UserContext.Provider value={{ statusResume, changueStatusResume, currentOrder, setCurrentOrder, currentClient, setCurrentClient }} >
+            <Route exact path="/resume" component={Resume} />
             <Route exact path="/home" component={Home} />
             <Route exact path="/mainmenu" component={MainMenu} />
             <Route exact path="/" component={Login} />

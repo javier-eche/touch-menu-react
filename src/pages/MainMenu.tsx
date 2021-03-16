@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import styled from "@emotion/styled";
 import { useHistory } from 'react-router-dom';
 import Header from "../components/main/Header";
 import Button from '../components/UI/Button';
@@ -6,6 +7,18 @@ import Swal from 'sweetalert2'
 import { UserContext } from '../assets/contexts/contexts';
 
 let history;
+
+const StyledMainMenu = styled.div`
+& .mainmenu-options{
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+`;
 
 const MainMenu = () => {
   const { setCurrentClient } = useContext(UserContext);
@@ -34,10 +47,14 @@ const MainMenu = () => {
   };
 
   return (
-    <>
+    <StyledMainMenu>
       <Header />
-      <Button size={"large"} onClick={goToHome}>New Order</Button>
-    </>
+      <div className="mainmenu-options">
+        <Button size={"large"} onClick={goToHome}>Nueva Orden</Button>
+        <Button size={"large"} onClick={undefined}>Ordenes Pendientes</Button>
+        <Button size={"large"} onClick={undefined}>Historial</Button>
+      </div>
+    </StyledMainMenu>
   );
 }
 

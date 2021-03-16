@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from "@emotion/styled";
 import { useContext } from 'react';
-import { UserContext } from './../../assets/contexts/contexts';
+import { UserContext } from '../../assets/contexts/contexts';
 import Button from '../UI/Button';
 import { useHistory } from 'react-router-dom';
 
@@ -20,11 +20,11 @@ const ContainerResume = styled.div<StyledProps>`
   display: ${(props) => props.display === "false"? "none" : "flex"}
 `;
 
-const Resume = () => {
+const GoToResume = () => {
   const { statusResume } = useContext(UserContext);
   history = useHistory();
 
-  const goToResume = () => history.push("/mainmenu");
+  const goToResume = () => history.push("/resume");
 
   return (
     <ContainerResume display={statusResume.toString()} >
@@ -33,4 +33,4 @@ const Resume = () => {
   );
 }
 
-export default Resume;
+export default GoToResume;

@@ -7,12 +7,22 @@ import Input from "../components/UI/Input";
 import Logo from "../components/UI/Logo";
 
 const ContainerLogin = styled.form`
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items:center;
   justify-content: center;
-  margin-top: 20%;
-  gap: 20px
+  & .form-logo{
+    padding-bottom: 150px;
+  }
+
+  & .form-login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
 `;
 
 let history;
@@ -41,10 +51,14 @@ const Login = () => {
 
   return (
     <ContainerLogin onSubmit={handleSubmit}>
-      <Logo size={"default"}/>
-      <Input type={"text"}/>
-      <Input type={"password"}/>
-      <Button size={"large"} onClick={undefined}>Iniciar Sesión</Button>
+      <div className="form-logo">
+        <Logo size={"default"}/>
+      </div>
+      <div className="form-login">
+        <Input type={"text"}/>
+        <Input type={"password"}/>
+        <Button size={"large"} onClick={undefined}>Iniciar Sesión</Button>
+      </div>
     </ContainerLogin>
   );
 }

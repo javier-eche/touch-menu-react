@@ -31,7 +31,16 @@ const StyledCard = styled.div<PropStyle>`
   }
   & .card-checked{
     display: ${(props) => !props.status ? "none" : "flex"};
+    justify-content: space-between;
+  }
+  & .card-unchecked{
+    display: ${(props) => !props.status ? "flex" : "none"};
     justify-content: flex-end;
+  }
+  & .card-count{
+    display: flex;
+    align-items: center;
+    gap: 5px;
   }
 `;
 
@@ -46,13 +55,24 @@ interface PropStyle{
 
 const Card: React.FC<Props> = ({product}) => {
 
-  const { currentOrder, setCurrentOrder } = useContext(UserContext);
+  const { currentOrder, setCurrentOrder, changueStatusResume } = useContext(UserContext);
   const [statusChecked, setStatusChecked] = useState(false);
+  const [countProduct, setCountProduct] = useState(1)
 
 
   function changeChecked(){
     setStatusChecked(!statusChecked);
+    changueStatusResume();
     setCurrentOrder([...currentOrder, product])
+  }
+
+  const incrementCount = () =>{
+    setCountProduct(countProduct + 1)
+    setCurrentOrder([...currentOrder, product])
+  }
+
+  const decrementCount = () =>{
+    if(countProduct > 1)setCountProduct(countProduct - 1)
   }
 
   return (
@@ -63,7 +83,15 @@ const Card: React.FC<Props> = ({product}) => {
         <p>{product.type_product}</p>
         <p>S./ {product.price}</p>
         <div className="card-checked">
-          <Icon onClick={() => console.log("")} type="checked" fill={colors.secondary} size={20} />
+          <div className="card-count">
+            <Icon onClick={decrementCount} type="minus" fill={colors.secondary} size={30} />
+            <p>{countProduct}</p>
+            <Icon onClick={incrementCount} type="plus" fill={colors.secondary} size={30} />
+          </div>
+          <Icon onClick={undefined} type="checked" fill={colors.secondary} size={30} />
+        </div>
+        <div className="card-unchecked">
+          <Icon onClick={undefined} type="unchecked" fill={colors.secondary} size={30} />
         </div>      
       </div>
 

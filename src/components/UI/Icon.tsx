@@ -1,7 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { TiThMenu } from 'react-icons/ti';
-import { RiCheckboxCircleFill } from 'react-icons/ri';
+import { RiCheckboxCircleFill, RiCheckboxCircleLine } from 'react-icons/ri';
 import { MdNotificationsActive, MdNotificationsNone } from 'react-icons/md';
+import { TiPlusOutline, TiMinusOutline } from 'react-icons/ti';
+import { FaTrashAlt } from 'react-icons/fa'
 import { css } from "@emotion/react";
 import { IconType } from 'react-icons';
 
@@ -10,6 +12,10 @@ const iconSet:any = {
   notiOn: MdNotificationsActive,
   notiOff: MdNotificationsNone,
   checked: RiCheckboxCircleFill,
+  unchecked: RiCheckboxCircleLine,
+  plus: TiPlusOutline,
+  minus: TiMinusOutline,
+  trash: FaTrashAlt,
 };
 
 interface Props{
