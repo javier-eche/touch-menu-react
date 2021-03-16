@@ -33,6 +33,15 @@ const StyledResume = styled.div`
   gap: 10px;
   margin-top: 30px;
 }
+& .resume-item-name{
+  width: 45%;
+}
+& .resume-item-price{
+  width: 25%;
+}
+& .resume-item-trash{
+  width: 10px;
+}
 `;
 
 const NewOrder = () => {
@@ -43,12 +52,17 @@ const NewOrder = () => {
     <StyledResume>
       <Header />
       <div className="resume-container">
+        {/* <div className="resume-item">
+          <div className ="resume-item-name"><ContentLarge>Producto</ContentLarge></div>
+          <div className ="resume-item-price"><ContentLarge>Precio</ContentLarge></div>
+          <div className ="resume-item-price"><ContentLarge>Eliminar</ContentLarge></div>
+        </div> */}
         {currentOrder.map( (order:any) => {
           return (
             <div key={Date.now() + Math.random()} className="resume-item">
-              <ContentLarge>{order.name}</ContentLarge>
-              <ContentLarge>{order.price}</ContentLarge>
-              <Icon onClick={undefined} type="trash" fill={colors.secondary} size={30} />
+              <div className ="resume-item-name"><ContentLarge>{order.name}</ContentLarge></div>
+              <div className ="resume-item-price"><ContentLarge>{order.price}</ContentLarge></div>
+              <div className ="resume-item-trash"><Icon onClick={undefined} type="trash" fill={colors.secondary} size={30} /></div>              
             </div>
           );
         })}
